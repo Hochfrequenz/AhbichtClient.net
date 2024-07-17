@@ -1,4 +1,4 @@
-﻿namespace AhbichtClient.Model;
+namespace AhbichtClient.Model;
 
 /// <summary>
 /// This class is the base class of all evaluated format constraints. They are used in the context of the

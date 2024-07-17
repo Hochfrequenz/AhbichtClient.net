@@ -1,4 +1,4 @@
-﻿namespace AhbichtClient.Model;
+namespace AhbichtClient.Model;
 
 /// <summary>
 /// raised when a package is unresolvable

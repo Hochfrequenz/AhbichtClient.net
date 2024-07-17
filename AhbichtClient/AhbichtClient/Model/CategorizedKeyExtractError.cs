@@ -1,4 +1,4 @@
-﻿namespace AhbichtClient.Model;
+namespace AhbichtClient.Model;
 
 /// <summary>
 /// raised when a categorized key extract cannot be created (most likely because of malformed input)

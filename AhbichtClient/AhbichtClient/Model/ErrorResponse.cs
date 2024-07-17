@@ -1,4 +1,4 @@
-﻿namespace AhbichtClient.Model;
+namespace AhbichtClient.Model;
 
 /// <summary>
 /// the Azure Functions based backend returns this object when an error occurs.

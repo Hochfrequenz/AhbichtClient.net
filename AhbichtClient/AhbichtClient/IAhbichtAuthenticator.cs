@@ -1,4 +1,4 @@
-﻿namespace AhbichtClient;
+namespace AhbichtClient;
 
 /// <summary>
 /// Can provide information on whether you need to authenticate against transformer.bee and how

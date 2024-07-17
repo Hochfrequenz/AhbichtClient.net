@@ -1,4 +1,4 @@
-﻿namespace AhbichtClient.Model;
+namespace AhbichtClient.Model;
 
 /// <summary>
 /// A class for the result of the format constraint evaluation.

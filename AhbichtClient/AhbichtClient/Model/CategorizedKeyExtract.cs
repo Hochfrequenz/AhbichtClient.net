@@ -1,4 +1,4 @@
-﻿namespace AhbichtClient.Model;
+namespace AhbichtClient.Model;
 
 /// <summary>
 /// A Categorized Key Extract contains those condition keys that are contained inside an expression.

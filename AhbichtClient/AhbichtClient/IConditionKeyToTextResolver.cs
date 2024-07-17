@@ -1,4 +1,4 @@
-﻿using AhbichtClient.Model;
+using AhbichtClient.Model;
 using EDILibrary;
 
 namespace AhbichtClient;

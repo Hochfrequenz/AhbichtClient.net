@@ -1,4 +1,4 @@
-﻿using AhbichtClient.Model;
+using AhbichtClient.Model;
 
 namespace AhbichtClient;
 
