@@ -51,9 +51,4 @@ class Program
         var evaluationResult = await client.Evaluate(expression, myResults);
         Console.WriteLine($"The expression '{expression}' is evaluated to: {evaluationResult.RequirementConstraintEvaluationResult.RequirementConstraintsFulfilled}");
     }
-    // this prints:
-    // The package '10P' is equivalent to [20] ? [244]
-    // where '[244]' refers to 'Wenn SG10 CCI+6++ZA9 (Aggreg. verantw. ÜNB) in dieser SG8 vorhanden'
-    // To evaluate the expression 'Muss ([1] O [2])[951]' you need to provide values for the following keys: 1, 2 and 951
-    // The expression 'Muss ([1] O [2])[951]' is evaluated to: True
 }
