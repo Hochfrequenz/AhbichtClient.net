@@ -2,9 +2,8 @@ version: "3.7"
 
 services:
   transformer:
-    image: ghcr.io/enercity/edifact-bo4e-converter/edifactbo4econverter:v1.1.29
+    image: ghcr.io/hochfrequenz/ahbicht-functions:v0.1.0
     environment:
       - StorageProvider=Directory
     ports:
-      - ${TRANSFORMER_GRPC_PORT:-5020}:5000
-      - ${TRANSFORMER_REST_PORT:-5021}:5001
+      - ${AHBICHT_FUNCTIONS_REST_PORT:-7071}:7071

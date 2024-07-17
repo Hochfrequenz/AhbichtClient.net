@@ -7,36 +7,57 @@ namespace AhbichtFunctionsClient;
 /// Interface of all the things that can convert EDIFACT to BO4E
 /// </summary>
 /// <remarks>This will be useful if you want to mock the client elsewhere</remarks>
-public interface ICanConvertToBo4e
+public interface IContentEvaluator
 {
     /// <summary>
-    /// convert an edifact to BO4E
+    /// given an ahb condition expression and information about which conditions is fulfilled, evaluate the expression as whole
     /// </summary>
-    /// <param name="edifact">edifact message as string</param>
-    /// <param name="formatVersion"><see cref="EdifactFormatVersion"/></param>
-    /// <returns><see cref="Marktnachricht"/></returns>
-    public Task<List<Marktnachricht>> ConvertToBo4e(string edifact, EdifactFormatVersion formatVersion);
+    public Task<ContentEvaluationResult> Evaluate(string ahbExpression, ContentEvaluationResult contentEvaluationResult);
 }
 
 /// <summary>
-/// Interface of all the things that can convert EDIFACT to BO4E
+/// Interface of all the things that can extract conditions keys from a given expression
 /// </summary>
 /// <remarks>This will be useful if you want to mock the client elsewhere</remarks>
-public interface ICanConvertToEdifact
+public interface ICategorizedKeyExtractor
 {
     /// <summary>
-    /// convert bo4e to edifact
+    /// given an ahb condition expression and information about which conditions is fulfilled, evaluate the expression as whole
     /// </summary>
-    /// <param name="boneyComb">transaktion/Geschäftsvorfall as boneycomb</param>
-    /// <param name="formatVersion"><see cref="EdifactFormatVersion"/></param>
-    /// <returns>the edifact as plain string</returns>
-    public Task<string> ConvertToEdifact(BOneyComb boneyComb, EdifactFormatVersion formatVersion);
+    public Task<CategorizedKeyExtract> ExtractKeys(string expression);
 }
+
+/// <summary>
+/// Interface of all the things that can map a condition key to a human-readable text
+/// </summary>
+/// <remarks>This will be useful if you want to mock the client elsewhere</remarks>
+public interface IConditionKeyToTextResolver
+{
+    /// <summary>
+    /// given a condition key, returns the text that is associated with it
+    /// </summary>
+    /// <raises><see cref="ConditionNotResolvableException"/> if the condition key is not resolvable</raises>
+    public Task<ConditionKeyConditionTextMapping> ResolveCondition(string conditionKey, EdifactFormat format, EdifactFormatVersion formatVersion);
+}
+
+/// <summary>
+/// Interface of all the things that can map a package key to a condition string
+/// </summary>
+/// <remarks>This will be useful if you want to mock the client elsewhere</remarks>
+public interface IPackageKeyToConditionResolver
+{
+    /// <summary>
+    /// given a package key, returns the condition that is associated with it
+    /// </summary>
+    /// <raises><see cref="PackageNotResolvableException"/> if the package key is not resolvable</raises>
+    public Task<PackageKeyConditionExpressionMapping> ResolvePackage(string packageKey, EdifactFormat format, EdifactFormatVersion formatVersion);
+}
+
 
 /// <summary>
 /// Can provide information on whether you need to authenticate against transformer.bee and how
 /// </summary>
-public interface ITransformerBeeAuthenticator
+public interface IAhbichtAuthenticator
 {
     /// <summary>
     /// returns true iff the client should use authentication

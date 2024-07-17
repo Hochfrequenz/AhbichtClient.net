@@ -4,7 +4,7 @@ using EDILibrary;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 
-builder.Services.AddTransient<ITransformerBeeAuthenticator, NoAuthenticator>(); // Or you could use ClientIdClientSecretAuthenticator
+builder.Services.AddTransient<IAhbichtAuthenticator, NoAuthenticator>(); // Or you could use ClientIdClientSecretAuthenticator
 builder.Services.AddHttpClient("TransformerBee", client =>
 {
     client.BaseAddress = new Uri("http://localhost:5021/"); // or https://transformerstage.utilibee.io

@@ -6,14 +6,14 @@ using FluentAssertions;
 using Xunit;
 
 namespace AhbichtFunctionsClient.IntegrationTest;
-
+/*
 /// <summary>
 /// Tests that a bo4e can be converted to edifact
 /// </summary>
 public class Bo4eToEdifactTests : IClassFixture<ClientFixture>
 {
     private readonly ClientFixture _client;
-    private readonly ITransformerBeeAuthenticator _authenticator;
+    private readonly IAhbichtAuthenticator _authenticator;
 
     public Bo4eToEdifactTests(ClientFixture clientFixture)
     {
@@ -40,3 +40,4 @@ public class Bo4eToEdifactTests : IClassFixture<ClientFixture>
         result.Should().BeOfType<string>().And.StartWith("UNB+UNOC");
     }
 }
+*/

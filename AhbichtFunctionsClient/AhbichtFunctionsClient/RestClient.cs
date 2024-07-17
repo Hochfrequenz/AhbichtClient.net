@@ -1,7 +1,6 @@
 using System.Net;
 using System.Net.Http.Headers;
 using System.Security.Authentication;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using AhbichtFunctionsClient.Model;
@@ -10,11 +9,11 @@ using EDILibrary;
 namespace AhbichtFunctionsClient;
 
 /// <summary>
-/// a client for the transformer.bee REST API
+/// a client for the ahbicht-functions REST API
 /// </summary>
-public class TransformerBeeRestClient : ICanConvertToBo4e, ICanConvertToEdifact
+public class AhbichtFunctionsRestClient : IPackageKeyToConditionResolver, IConditionKeyToTextResolver, ICategorizedKeyExtractor
 {
-    private readonly ITransformerBeeAuthenticator _authenticator;
+    private readonly IAhbichtAuthenticator _authenticator;
     private readonly HttpClient _httpClient;
 
     private readonly JsonSerializerOptions _jsonSerializerOptions = new()
@@ -28,10 +27,9 @@ public class TransformerBeeRestClient : ICanConvertToBo4e, ICanConvertToEdifact
     /// It will create a client from said factory and use the <paramref name="httpClientName"/> for that.
     /// </summary>
     /// <param name="httpClientFactory">factory to create the http client from</param>
-    /// <param name="authenticator">something that tells you whether and how you need to authenticate yourself at transformer.bee</param>
+    /// <param name="authenticator">something that tells you whether and how you need to authenticate yourself at ahbichtfunctions</param>
     /// <param name="httpClientName">name used to create the client</param>
-    /// <remarks>Find the OpenAPI Spec here: https://transformerstage.utilibee.io/swagger/index.html</remarks>
-    public TransformerBeeRestClient(IHttpClientFactory httpClientFactory, ITransformerBeeAuthenticator authenticator, string httpClientName = "TransformerBee")
+    public AhbichtFunctionsRestClient(IHttpClientFactory httpClientFactory, IAhbichtAuthenticator authenticator, string httpClientName = "AhbichtFunctions")
     {
         _httpClient = httpClientFactory.CreateClient(httpClientName);
         if (_httpClient.BaseAddress == null)
@@ -55,114 +53,144 @@ public class TransformerBeeRestClient : ICanConvertToBo4e, ICanConvertToEdifact
     }
 
     /// <summary>
-    /// tests if transformer bee is available
+    /// tests if ahbicht backend is available
     /// </summary>
     /// <remarks>
     /// Note that this does _not_ check if you're authenticated.
     /// The method will probably throw an <see cref="HttpRequestException"/> if the host cannot be found.
     /// </remarks>
     /// <returns>
-    /// Returns true iff the transformer bee is available under the configured base address.
+    /// Returns true iff the ahbicht backend/ahbicht function is available under the configured base address.
     /// </returns>
     public async Task<bool> IsAvailable()
     {
-        var uriBuilder = new UriBuilder(_httpClient.BaseAddress!)
-        {
-            Path = "/version"
-        };
-
-        var versionUrl = uriBuilder.Uri.AbsoluteUri;
-        var response = await _httpClient.GetAsync(versionUrl);
+        var response = await _httpClient.GetAsync(_httpClient.BaseAddress!);
         // note that this is available without any authentication
-        // see e.g. http://transformerstage.utilibee.io/version
-        return response.IsSuccessStatusCode;
+        // see e.g. https://ahbicht.azurewebsites.net/ or https://localhost:7071
+        if (!response.IsSuccessStatusCode)
+        {
+            return false;
+        }
+        var content = await response.Content.ReadAsStringAsync();
+        return content.Contains("Your Functions 3.0 app is up and running");
     }
 
-    /// <summary>
-    /// convert an edifact to BO4E
-    /// </summary>
-    /// <param name="edifact">edifact message as string</param>
-    /// <param name="formatVersion"><see cref="EdifactFormatVersion"/></param>
-    /// <returns><see cref="Marktnachricht"/></returns>
-    /// <exception cref="HttpRequestException"></exception>
-    public async Task<List<Marktnachricht>> ConvertToBo4e(string edifact, EdifactFormatVersion formatVersion)
+    public async Task<PackageKeyConditionExpressionMapping> ResolvePackage(string packageKey, EdifactFormat format, EdifactFormatVersion formatVersion)
     {
-        if (string.IsNullOrWhiteSpace(edifact))
+        if (packageKey is null)
         {
-            throw new ArgumentNullException(nameof(edifact));
+            throw new ArgumentNullException(nameof(packageKey));
+        }
+
+        if (!packageKey.EndsWith("P"))
+        {
+            throw new ArgumentException($"The package key '{packageKey}' has to end with 'P'");
         }
 
         var uriBuilder = new UriBuilder(_httpClient!.BaseAddress!)
         {
-            Path = "/v1/transformer/EdiToBo4E"
+            Path = $"/api/ResolvePackageConditionExpression/{formatVersion}/{format}/{packageKey}"
         };
 
         var convertUrl = uriBuilder.Uri.AbsoluteUri;
-        var request = new EdifactToBo4eRequest
-        {
-            Edifact = edifact,
-            FormatVersion = formatVersion,
-        };
-        var requestJson = JsonSerializer.Serialize(request, _jsonSerializerOptions);
         await EnsureAuthentication();
-        var httpResponse = await _httpClient.PostAsync(convertUrl, new StringContent(requestJson, Encoding.UTF8, "application/json"));
+        var httpResponse = await _httpClient.GetAsync(convertUrl);
+        var responseContent = await httpResponse.Content.ReadAsStringAsync();
         if (!httpResponse.IsSuccessStatusCode)
         {
-            var errorContent = await httpResponse.Content.ReadAsStringAsync();
-            if (httpResponse.StatusCode == HttpStatusCode.Unauthorized && !_authenticator.UseAuthentication())
+            switch (httpResponse.StatusCode)
             {
-                throw new AuthenticationException($"Did you correctly set up the {nameof(ITransformerBeeAuthenticator)}?");
+                case HttpStatusCode.Unauthorized when !_authenticator.UseAuthentication():
+                    throw new AuthenticationException($"Did you correctly set up the {nameof(IAhbichtAuthenticator)}?");
+                default:
+                    throw new HttpRequestException($"Could not map package key '{packageKey}'; Status code: {httpResponse.StatusCode} / {responseContent}");
             }
-
-            throw new HttpRequestException($"Could not convert {edifact} to BO4E. Status code: {httpResponse.StatusCode} / {errorContent}");
+        }
+        var responseBody = JsonSerializer.Deserialize<PackageKeyConditionExpressionMapping>(responseContent!, _jsonSerializerOptions);
+        if (responseBody?.PackageKey is null && responseBody?.PackageExpression is null)
+        {
+            // the bad thing is: the backend returns a success status code with a error body
+            var errorBody = JsonSerializer.Deserialize<ErrorResponse>(responseContent!, _jsonSerializerOptions);
+            throw new PackageNotResolvableException(packageKey, $"The package key '{packageKey}' could not be found: {errorBody.ErrorMessage}");
+        }
+        return responseBody!;
+    }
+    
+    public async Task<ConditionKeyConditionTextMapping> ResolveCondition(string conditionKey, EdifactFormat format, EdifactFormatVersion formatVersion)
+    {
+        if (conditionKey is null)
+        {
+            throw new ArgumentNullException(nameof(conditionKey));
         }
 
-        var responseContent = await httpResponse.Content.ReadAsStringAsync();
-        var bo4eResponse = JsonSerializer.Deserialize<EdifactToBo4eResponse>(responseContent, _jsonSerializerOptions);
-        // todo: handle the case that the deserialization fails and bo4eResponse is null
-        var unescapedJson = bo4eResponse!.Bo4eJsonString!.Unescape();
-        var result = JsonSerializer.Deserialize<List<Marktnachricht>>(unescapedJson!, _jsonSerializerOptions);
-        // todo: handle the case that the deserialization fails and result is null
-        return result!;
-    }
-
-    public async Task<string> ConvertToEdifact(BOneyComb boneyComb, EdifactFormatVersion formatVersion)
-    {
-        if (boneyComb is null)
+        if (conditionKey.Contains("[")||conditionKey.Contains("]"))
         {
-            throw new ArgumentNullException(nameof(boneyComb));
+            throw new ArgumentException($"The condition key '{conditionKey}' must not contain square brackets");
         }
 
         var uriBuilder = new UriBuilder(_httpClient!.BaseAddress!)
         {
-            Path = "/v1/transformer/Bo4ETransactionToEdi"
+            Path = $"/api/ResolveConditionText/{formatVersion}/{format}/{conditionKey}"
         };
 
         var convertUrl = uriBuilder.Uri.AbsoluteUri;
-        var bo4eJsonString = JsonSerializer.Serialize(boneyComb, _jsonSerializerOptions);
-        var request = new Bo4eTransactionToEdifactRequest
-        {
-            Bo4eJsonString = bo4eJsonString,
-            FormatVersion = formatVersion,
-        };
-        var requestJson = JsonSerializer.Serialize(request, _jsonSerializerOptions);
         await EnsureAuthentication();
-        var httpResponse = await _httpClient.PostAsync(convertUrl, new StringContent(requestJson, Encoding.UTF8, "application/json"));
+        var httpResponse = await _httpClient.GetAsync(convertUrl);
+        var responseContent = await httpResponse.Content.ReadAsStringAsync();
         if (!httpResponse.IsSuccessStatusCode)
         {
-            var errorContent = await httpResponse.Content.ReadAsStringAsync();
-            if (httpResponse.StatusCode == HttpStatusCode.Unauthorized && !_authenticator.UseAuthentication())
+            switch (httpResponse.StatusCode)
             {
-                throw new AuthenticationException($"Did you correctly set up the {nameof(ITransformerBeeAuthenticator)}?");
+                case HttpStatusCode.Unauthorized when !_authenticator.UseAuthentication():
+                    throw new AuthenticationException($"Did you correctly set up the {nameof(IAhbichtAuthenticator)}?");
+                default:
+                    throw new HttpRequestException($"Could not map condition key '{conditionKey}'; Status code: {httpResponse.StatusCode} / {responseContent}");
             }
+        }
+        var responseBody = JsonSerializer.Deserialize<ConditionKeyConditionTextMapping>(responseContent!, _jsonSerializerOptions);
+        if (responseBody?.ConditionKey is null && responseBody?.ConditionText is null)
+        {
+            // the bad thing is: the backend returns a success status code with a error body
+            var errorBody = JsonSerializer.Deserialize<ErrorResponse>(responseContent!, _jsonSerializerOptions);
+            throw new ConditionNotResolvableException(conditionKey, $"The condition key '{conditionKey}' could not be found: {errorBody.ErrorMessage}");
+        }
+        return responseBody!;
+    }
 
-            throw new HttpRequestException($"Could not convert to EDIFACT; Status code: {httpResponse.StatusCode} / {errorContent}");
+    public async Task<CategorizedKeyExtract> ExtractKeys(string expression)
+    {
+        if (expression is null||string.IsNullOrWhiteSpace(expression))
+        {
+            throw new ArgumentNullException(nameof(expression));
         }
 
+        var uriBuilder = new UriBuilder(_httpClient!.BaseAddress!)
+        {
+            Path = "/api/CategorizedKeyExtract",
+            Query = $"expression={expression}"
+        };
+
+        var convertUrl = uriBuilder.Uri.AbsoluteUri;
+        await EnsureAuthentication();
+        var httpResponse = await _httpClient.GetAsync(convertUrl);
         var responseContent = await httpResponse.Content.ReadAsStringAsync();
-        // todo: ensure that the deserialization does not fail and the response is not empty
-        var responseBody = JsonSerializer.Deserialize<Bo4eTransactionToEdifactResponse>(responseContent!, _jsonSerializerOptions);
-        // todo: handle case that deserialization fails and responseBody is null
-        return responseBody!.Edifact!;
+        if (!httpResponse.IsSuccessStatusCode)
+        {
+            switch (httpResponse.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized when !_authenticator.UseAuthentication():
+                    throw new AuthenticationException($"Did you correctly set up the {nameof(IAhbichtAuthenticator)}?");
+                default:
+                    throw new HttpRequestException($"Could not parse expression '{expression}'; Status code: {httpResponse.StatusCode} / {responseContent}");
+            }
+        }
+        var responseBody = JsonSerializer.Deserialize<CategorizedKeyExtract>(responseContent!, _jsonSerializerOptions);
+        if (responseBody?.RequirementConstraintKeys is null && responseBody?.FormatConstraintKeys is null)
+        {
+            // the bad thing is: the backend returns a success status code with a error body
+            var errorBody = JsonSerializer.Deserialize<ErrorResponse>(responseContent!, _jsonSerializerOptions);
+            throw new CategorizedKeyExtractError(expression, $"The condition key '{expression}' could not be found: {errorBody.ErrorMessage}");
+        }
+        return responseBody!;
     }
 }

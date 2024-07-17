@@ -1,7 +1,27 @@
-<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4fa21289_002Debff_002D4c5a_002D8d89_002D3c311da32c05/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4fa21289_002Debff_002D4c5a_002D8d89_002D3c311da32c05/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6484ef14_002Dc2fe_002D497a_002Db425_002Db46d160ac22d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Keys_Can_Be_Extracted" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::77598126-7BB0-4C07-BF06-331033E0DE78::net8.0::AhbichtFunctionsClient.IntegrationTest.CategorizedKeyExtractorTests.Keys_Can_Be_Extracted&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::77598126-7BB0-4C07-BF06-331033E0DE78::net8.0::AhbichtFunctionsClient.IntegrationTest.CategorizedKeyExtractorTests.Keys_Cannot_Be_Extracted&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ae9500eb_002Dc8d5_002D4fd1_002Da306_002Db8c26602b57a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="IsAvailable_Throws_Exception_If_Host_Is_Unavailable" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;xUnit::77598126-7BB0-4C07-BF06-331033E0DE78::net8.0::AhbichtFunctionsClient.IntegrationTest.ConnectionTests.IsAvailable_Throws_Exception_If_Host_Is_Unavailable&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::77598126-7BB0-4C07-BF06-331033E0DE78::net8.0::AhbichtFunctionsClient.IntegrationTest.CategorizedKeyExtractorTests.Keys_Can_Be_Extracted&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;ProjectFile&gt;77598126-7BB0-4C07-BF06-331033E0DE78/f:ResolverTests.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dc04e98a_002D6b11_002D4c7c_002Da7ca_002D4f4550c22446/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="IsAvailable_Returns_True_If_Service_Is_Available" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::77598126-7BB0-4C07-BF06-331033E0DE78::net8.0::AhbichtFunctionsClient.IntegrationTest.ConnectionTests.IsAvailable_Returns_True_If_Service_Is_Available&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
 	</wpf:ResourceDictionary>

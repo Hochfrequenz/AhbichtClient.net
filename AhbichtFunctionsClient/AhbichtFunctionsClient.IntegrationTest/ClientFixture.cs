@@ -12,14 +12,14 @@ public class ClientFixture : IClassFixture<ClientFixture>
 
     public readonly ServiceCollection ServiceCollection;
 
-    public readonly ITransformerBeeAuthenticator Authenticator;
+    public readonly IAhbichtAuthenticator Authenticator;
 
     public ClientFixture()
     {
         var services = new ServiceCollection();
-        services.AddHttpClient("TransformerBee", client =>
+        services.AddHttpClient("AhbichtFunctions", client =>
         {
-            client.BaseAddress = new Uri("http://localhost:5021"); // Check docker-compose.yml
+            client.BaseAddress = new Uri("http://localhost:7071"); // Check docker-compose.yml
         });
         var serviceProvider = services.BuildServiceProvider();
         ServiceCollection = services;
