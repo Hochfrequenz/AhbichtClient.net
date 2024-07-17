@@ -1,9 +1,8 @@
-using AhbichtFunctionsClient;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace TransformerBeeClient.UnitTest;
+namespace AhbichtFunctionsClient.UnitTest;
 
 public class ConnectionTests
 {

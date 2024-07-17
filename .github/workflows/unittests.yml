@@ -22,8 +22,8 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
 
       - name: Install dependencies
-        working-directory: TransformerBeeClient
-        run: dotnet restore TransformerBeeClient.sln
+        working-directory: AhbichtFunctionsClient
+        run: dotnet restore AhbichtFunctionsClient.sln
 
       - name: Build
         working-directory: AhbichtFunctionsClient

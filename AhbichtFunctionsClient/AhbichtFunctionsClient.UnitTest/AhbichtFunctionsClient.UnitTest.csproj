@@ -7,7 +7,6 @@
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
         <TargetFrameworks>net8.0;net6.0;net7.0</TargetFrameworks>
-        <RootNamespace>TransformerBeeClient.UnitTest</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
