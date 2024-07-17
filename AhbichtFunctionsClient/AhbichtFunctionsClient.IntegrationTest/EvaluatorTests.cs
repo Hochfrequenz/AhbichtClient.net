@@ -62,7 +62,7 @@ public class EvaluatorTests : IClassFixture<ClientFixture>
     {
         var httpClientFactory = _client.HttpClientFactory;
         IContentEvaluator client = new AhbichtFunctionsRestClient(httpClientFactory, _authenticator);
-        var evaluatingAMalformedExpression = async () => client.Evaluate("Muss [2]O[3])[902][501]", new ContentEvaluationResult // <-- contains a syntax error
+        var evaluatingAMalformedExpression = async () => await client.Evaluate("Muss [2]O[3])[902][501]", new ContentEvaluationResult // <-- contains a syntax error
         {
             Hints = new Dictionary<string, string> {{"501", "foo"}},
             FormatConstraints = new Dictionary<string, EvaluatedFormatConstraint>
