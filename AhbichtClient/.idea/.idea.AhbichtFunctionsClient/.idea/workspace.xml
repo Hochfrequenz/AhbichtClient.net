@@ -9,23 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6392c965-a323-4ae7-b341-2a0f7de091e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/IAhbichtAuthenticator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/ICategorizedKeyExtractor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/IConditionKeyToTextResolver.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/IContentEvaluator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/IPackageKeyToConditionResolver.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/ConditionFulfilledValue.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/RequirementIndicator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/ClientFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/ClientFixture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/EvaluatorTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/EvaluatorTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/Interfaces.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/AhbExpressionEvaluationResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/AhbExpressionEvaluationResult.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/NoAutenticator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/NoAuthenticator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/RestClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/AhbichtClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/bin/Debug/net8.0/AhbichtClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/bin/Debug/net8.0/AhbichtClient.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/bin/Debug/net8.0/AhbichtClient.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/bin/Debug/net8.0/AhbichtClient.pdb" afterDir="false" />
-    </list>
+    <list default="true" id="6392c965-a323-4ae7-b341-2a0f7de091e6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,7 +114,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1721222585302</updated>
-      <workItem from="1721222586046" duration="13383000" />
+      <workItem from="1721222586046" duration="13427000" />
     </task>
     <servers />
   </component>
