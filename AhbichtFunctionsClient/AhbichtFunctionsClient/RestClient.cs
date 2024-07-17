@@ -1,6 +1,8 @@
 using System.Net;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Security.Authentication;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using AhbichtFunctionsClient.Model;
@@ -11,7 +13,7 @@ namespace AhbichtFunctionsClient;
 /// <summary>
 /// a client for the ahbicht-functions REST API
 /// </summary>
-public class AhbichtFunctionsRestClient : IPackageKeyToConditionResolver, IConditionKeyToTextResolver, ICategorizedKeyExtractor
+public class AhbichtFunctionsRestClient : IPackageKeyToConditionResolver, IConditionKeyToTextResolver, ICategorizedKeyExtractor, IContentEvaluator
 {
     private readonly IAhbichtAuthenticator _authenticator;
     private readonly HttpClient _httpClient;
@@ -166,7 +168,7 @@ public class AhbichtFunctionsRestClient : IPackageKeyToConditionResolver, ICondi
 
         var uriBuilder = new UriBuilder(_httpClient!.BaseAddress!)
         {
-            Path = "/api/CategorizedKeyExtract",
+            Path = "/api/ExtractKeys",
             Query = $"expression={expression}"
         };
 
@@ -190,6 +192,50 @@ public class AhbichtFunctionsRestClient : IPackageKeyToConditionResolver, ICondi
             // the bad thing is: the backend returns a success status code with a error body
             var errorBody = JsonSerializer.Deserialize<ErrorResponse>(responseContent!, _jsonSerializerOptions);
             throw new CategorizedKeyExtractError(expression, $"The condition key '{expression}' could not be found: {errorBody.ErrorMessage}");
+        }
+        return responseBody!;
+    }
+
+    public async Task<AhbExpressionEvaluationResult> Evaluate(string ahbExpression, ContentEvaluationResult contentEvaluationResult)
+    {
+        if (ahbExpression is null||string.IsNullOrWhiteSpace(ahbExpression))
+        {
+            throw new ArgumentNullException(nameof(ahbExpression));
+        }
+
+        if (contentEvaluationResult is null)
+        {
+            throw new ArgumentNullException(nameof(contentEvaluationResult));
+        }
+
+        var uriBuilder = new UriBuilder(_httpClient!.BaseAddress!)
+        {
+            Path = "/api/ParseExpression",
+            Query = $"expression={ahbExpression}"
+        };
+
+        var convertUrl = uriBuilder.Uri.AbsoluteUri;
+        await EnsureAuthentication();
+        var requestJson = JsonSerializer.Serialize(contentEvaluationResult, _jsonSerializerOptions);
+        var httpResponse = await _httpClient.PostAsync(convertUrl, new StringContent(requestJson, Encoding.UTF8, "application/json"));
+        var responseContent = await httpResponse.Content.ReadAsStringAsync();
+        if (!httpResponse.IsSuccessStatusCode)
+        {
+            switch (httpResponse.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized when !_authenticator.UseAuthentication():
+                    throw new AuthenticationException($"Did you correctly set up the {nameof(IAhbichtAuthenticator)}?");
+                default:
+                    throw new HttpRequestException($"Could not parse and evaluate expression '{ahbExpression}'; Status code: {httpResponse.StatusCode} / {responseContent}");
+            }
+        }
+        var responseBody = JsonSerializer.Deserialize<AhbExpressionEvaluationResult>(responseContent!, _jsonSerializerOptions);
+        if (responseBody?.RequirementConstraintEvaluationResult is null && responseBody?.FormatConstraintEvaluationResult is null && responseBody?.RequirementIndicator is RequirementIndicator.Muss)
+        {
+            // the bad thing is: the backend returns a success status code with a error body
+            var errorBody = JsonSerializer.Deserialize<ErrorResponse>(responseContent!, _jsonSerializerOptions);
+            // todo: be more precise in the exception; Was is malformed? Are data missing?
+            throw new ExpressionNotEvaluatableException(ahbExpression, $"The expression '{ahbExpression}' could not be evaluated: {errorBody.ErrorMessage}");
         }
         return responseBody!;
     }
