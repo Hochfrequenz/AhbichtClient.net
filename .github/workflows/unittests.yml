@@ -26,10 +26,10 @@ jobs:
         run: dotnet restore TransformerBeeClient.sln
 
       - name: Build
-        working-directory: TransformerBeeClient
+        working-directory: AhbichtFunctionsClient
         run: dotnet build --no-restore --configuration Release
 
       - name: Run Unit Tests
-        working-directory: TransformerBeeClient/TransformerBeeClient.UnitTest
+        working-directory: AhbichtFunctionsClient/AhbichtFunctionsClient.UnitTest
         run: |
           dotnet test
