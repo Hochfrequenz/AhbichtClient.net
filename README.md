@@ -3,15 +3,31 @@
 
 # AhbichtClient.NET
 A client to use features of the Python library [AHBicht](https://github.com/Hochfrequenz/ahbicht) in the .NET universe.
-AHBichts features are exposed via a REST API; think of it like a microservice that parses AHB expressions for you.
+For this library to work you need a backend, that exposes AHBicht features via a REST API.
+This backend is available free of charge but without warranty by Hochfrequenz (based on Azure Functions).
+Or you can host it yourself like any other microservice.
+Hochfrequenz can provide you with a standalone Docker image; Contact [@JoschaMetze](https://github.com/joschametze) (`joscha.metze+ahbicht@hochfrequenz.de`).
 
-## How to use this library
+## How to use this library (Quickstart with public backend)
+
+https://github.com/Hochfrequenz/AhbichtClient.net/blob/b234147488d95ac773d4f3942b5b1125dd4004ba/AhbichtClient/AhbichtClientQuickStartApp/Program.cs#L1-L54
+
+This prints:
+> The package '10P' is equivalent to [20] ? [244]
+> 
+> where '[244]' refers to 'Wenn SG10 CCI+6++ZA9 (Aggreg. verantw. ÜNB) in dieser SG8 vorhanden'
+> 
+> To evaluate the expression 'Muss ([1] O [2])[951]' you need to provide values for the following keys: 1, 2 and 951
+> 
+> The expression 'Muss ([1] O [2])[951]' is evaluated to: True
+
+## How to use this library (Detailed)
 
 ### Prerequisites / Account
 First of all, you need access to either a local instance of the [ahbicht-functions](https://github.com/Hochfrequenz/ahbicht-functions) (private repo) or use our public API.
 
 #### Local Instance
-If you have access to our docker image, check out the [docker-compose.yml](AhbichtFunctionsClient/AhbichtClient.IntegrationTest/docker-compose.yml) from the integration tests to pull and start the image.
+If you have access to our docker image, check out the [docker-compose.yml](AhbichtClient/AhbichtClient.IntegrationTest/docker-compose.yml) from the integration tests to pull and start the image.
 
 #### Public Instance
 If you're just playing around, you can use our public instance at `https://ahbicht.azurewebsites.net`.
@@ -19,7 +35,7 @@ We can't guarantee uptime or performance, but it should be good enough for testi
 
 ### Using the client
 
-Install it from nuget [AhbichhtClient](https://www.nuget.org/packages/AhbichtClient):
+Install it from nuget [AhbichtClient](https://www.nuget.org/packages/AhbichtClient):
 
 ```bash
 dotnet add package AhbichtClient
@@ -49,7 +65,7 @@ var myAuthenticator = new ClientIdClientSecretAuthenticator("YOUR_CLIENT_ID", "Y
 ```
 
 #### Base Address
-The `HttpClient` instance used by the `AhbichtCLient` has to have a `BaseAddress` set.
+The `HttpClient` instance used by the `AhbichtRestClient` class has to have a `BaseAddress` set.
 Use e.g. `https://ahbicht.azurewebsites.net` for our demo system.
 
 ### Use with ASP.NET Core
