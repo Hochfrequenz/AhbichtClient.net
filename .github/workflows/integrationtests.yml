@@ -29,7 +29,7 @@ jobs:
         # 3) Select the following scopes: read:packages
         # GHCR_USR is the username for the Github Container Registry; it has to match the PAT and is the username of the Github account that created the PAT
         # You can update the tokens in the repository settings:
-        # https://github.com/Hochfrequenz/AhbichtClient.nt/settings/secrets/actions/GHCR_PAT
+        # https://github.com/Hochfrequenz/AhbichtClient.net/settings/secrets/actions/GHCR_PAT
         # https://github.com/Hochfrequenz/AhbichtClient.net/settings/secrets/actions/GHCR_USR
         # Tokens will expire 2025-07-01
         run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ secrets.GHCR_USR }} --password-stdin

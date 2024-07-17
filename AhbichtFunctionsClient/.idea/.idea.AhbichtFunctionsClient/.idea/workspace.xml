@@ -10,58 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6392c965-a323-4ae7-b341-2a0f7de091e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/CategorizedKeyExtract.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/CategorizedKeyExtractError.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/ConditionNotResolvableException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/ContentEvaluationResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/ErrorResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/EvaluatedFormatConstraint.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/ExpressionNotEvaluatableException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/FormatConstraintEvaluationResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/PackageNotResolvableException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/RequirementConstraintEvaluationResult.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/bin/Debug/net8.0/AhbichtClient.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AhbichtClient/bin/Debug/net8.0/AhbichtClient.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.github/workflows/integrationtests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/integrationtests.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.github/workflows/release_nuget.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/release_nuget.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.github/workflows/unittests.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AhbichtFunctionsClient/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AhbichtFunctionsClient/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AhbichtFunctionsClient/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AhbichtFunctionsClient/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.IntegrationTest/AhbichtFunctionsClient.IntegrationTest.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/AhbichtClient.IntegrationTest.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.IntegrationTest/CategorizedKeyExtractorTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/CategorizedKeyExtractorTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.IntegrationTest/ClientFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/ClientFixture.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.IntegrationTest/ConnectionTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/ConnectionTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.IntegrationTest/EvaluatorTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/EvaluatorTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.IntegrationTest/MweWithoutAspNetTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/MweWithoutAspNetTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.IntegrationTest/ResolverTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/ResolverTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.IntegrationTest/TestEdifacts/FV2310/55001.edi" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/TestEdifacts/FV2310/55001.edi" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.IntegrationTest/TestEdifacts/FV2310/55001.json" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/TestEdifacts/FV2310/55001.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.IntegrationTest/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.UnitTest/AhbichtFunctionsClient.UnitTest.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.UnitTest/ConnectionTests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.sln" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtFunctionsClient.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/AhbichtFunctionsClient.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/AhbichtClient.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Interfaces.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Interfaces.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/AhbExpressionEvaluationResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/AhbExpressionEvaluationResult.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/CategorizedKeyExtract.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/ConditionKeyConditionTextMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/ConditionKeyConditionTextMapping.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/ContentEvaluationResult.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/ErrorResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/EvaluatedFormatConstraint.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/FormatConstraintEvaluationResult.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/PackageKeyConditionExpressionMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/PackageKeyConditionExpressionMapping.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/PackageNotResolvableException.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/RequirementConstraintEvaluationResult.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/Model/TokenSchema.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/NoAutenticator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/NoAutenticator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtFunctionsClient/RestClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/RestClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExampleAspNetCoreApplication.Test/ApplicationTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExampleAspNetCoreApplication.Test/ApplicationTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExampleAspNetCoreApplication/ExampleAspNetCoreApplication.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ExampleAspNetCoreApplication/ExampleAspNetCoreApplication.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExampleAspNetCoreApplication/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ExampleAspNetCoreApplication/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AhbichtFunctionsClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AhbichtFunctionsClient/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/EvaluatorTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/EvaluatorTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/AhbExpressionEvaluationResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/AhbExpressionEvaluationResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/CategorizedKeyExtractError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/CategorizedKeyExtractError.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/ConditionKeyConditionTextMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/ConditionKeyConditionTextMapping.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/ConditionNotResolvableException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/ConditionNotResolvableException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/ExpressionNotEvaluatableException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/ExpressionNotEvaluatableException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/PackageKeyConditionExpressionMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/PackageKeyConditionExpressionMapping.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/PackageNotResolvableException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/PackageNotResolvableException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/RequirementConstraintEvaluationResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/RequirementConstraintEvaluationResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +127,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1721222585302</updated>
-      <workItem from="1721222586046" duration="12525000" />
+      <workItem from="1721222586046" duration="13246000" />
     </task>
     <servers />
   </component>
