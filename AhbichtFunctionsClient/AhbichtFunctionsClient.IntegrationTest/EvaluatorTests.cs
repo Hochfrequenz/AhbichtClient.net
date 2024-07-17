@@ -58,7 +58,7 @@ public class EvaluatorTests : IClassFixture<ClientFixture>
     }
 
     [Fact]
-    public async Task Conditions_Cannot_Be_Evaluated()
+    public async Task Expressions_Cannot_Be_Evaluated()
     {
         var httpClientFactory = _client.HttpClientFactory;
         IContentEvaluator client = new AhbichtFunctionsRestClient(httpClientFactory, _authenticator);
