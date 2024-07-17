@@ -37,7 +37,7 @@ public class ConnectionTests : IClassFixture<ClientFixture>
             client.BaseAddress = new Uri("http://localhost:1234"); // <-- no service running under this address
         });
         var serviceProvider = services.BuildServiceProvider();
-        var client = new AhbichtClient(serviceProvider.GetService<IHttpClientFactory>(), _authenticator);
+        var client = new AhbichtClient(serviceProvider.GetService<IHttpClientFactory>()!, _authenticator);
         var checkIfIsAvailable = async () => await client.IsAvailable();
         await checkIfIsAvailable.Should().ThrowAsync<HttpRequestException>();
     }

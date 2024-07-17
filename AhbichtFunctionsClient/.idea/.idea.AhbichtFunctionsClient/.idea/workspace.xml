@@ -10,18 +10,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6392c965-a323-4ae7-b341-2a0f7de091e6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.github/workflows/integrationtests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/integrationtests.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AhbichtFunctionsClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AhbichtFunctionsClient/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AhbichtClient/IAhbichtAuthenticator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AhbichtClient/ICategorizedKeyExtractor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AhbichtClient/IConditionKeyToTextResolver.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AhbichtClient/IContentEvaluator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AhbichtClient/IPackageKeyToConditionResolver.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/ConditionFulfilledValue.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AhbichtClient/Model/RequirementIndicator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/ClientFixture.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/ClientFixture.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/EvaluatorTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient.IntegrationTest/EvaluatorTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/Interfaces.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/AhbExpressionEvaluationResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/AhbExpressionEvaluationResult.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/CategorizedKeyExtractError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/CategorizedKeyExtractError.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/ConditionKeyConditionTextMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/ConditionKeyConditionTextMapping.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/ConditionNotResolvableException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/ConditionNotResolvableException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/ExpressionNotEvaluatableException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/ExpressionNotEvaluatableException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/PackageKeyConditionExpressionMapping.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/PackageKeyConditionExpressionMapping.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/PackageNotResolvableException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/PackageNotResolvableException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AhbichtClient/Model/RequirementConstraintEvaluationResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/Model/RequirementConstraintEvaluationResult.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/NoAutenticator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/NoAuthenticator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/RestClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/AhbichtClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/bin/Debug/net8.0/AhbichtClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/bin/Debug/net8.0/AhbichtClient.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AhbichtClient/bin/Debug/net8.0/AhbichtClient.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/AhbichtClient/bin/Debug/net8.0/AhbichtClient.pdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +130,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1721222585302</updated>
-      <workItem from="1721222586046" duration="13246000" />
+      <workItem from="1721222586046" duration="13383000" />
     </task>
     <servers />
   </component>
@@ -166,7 +169,7 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/AhbichtClient/RestClient.cs</url>
+          <url>file://$PROJECT_DIR$/AhbichtClient/AhbichtClient.cs</url>
           <line>108</line>
           <properties documentPath="C:\github\ahbicht-functions-dotnet-client\AhbichtFunctionsClient\AhbichtFunctionsClient\RestClient.cs" containingFunctionPresentation="Method 'ResolvePackage'">
             <startOffsets>
@@ -179,7 +182,7 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/AhbichtClient/RestClient.cs</url>
+          <url>file://$PROJECT_DIR$/AhbichtClient/AhbichtClient.cs</url>
           <line>116</line>
           <properties documentPath="C:\github\ahbicht-functions-dotnet-client\AhbichtFunctionsClient\AhbichtFunctionsClient\RestClient.cs" containingFunctionPresentation="Method 'ResolvePackage'">
             <startOffsets>
@@ -218,27 +221,27 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/AhbichtClient/RestClient.cs</url>
+          <url>file://$PROJECT_DIR$/AhbichtClient/AhbichtClient.cs</url>
           <line>221</line>
           <properties documentPath="C:\github\ahbicht-functions-dotnet-client\AhbichtFunctionsClient\AhbichtFunctionsClient\RestClient.cs" containingFunctionPresentation="Method 'Evaluate'">
             <startOffsets>
-              <option value="9790" />
+              <option value="9793" />
             </startOffsets>
             <endOffsets>
-              <option value="9916" />
+              <option value="9919" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/AhbichtClient/RestClient.cs</url>
+          <url>file://$PROJECT_DIR$/AhbichtClient/AhbichtClient.cs</url>
           <line>183</line>
           <properties documentPath="C:\github\ahbicht-functions-dotnet-client\AhbichtFunctionsClient\AhbichtFunctionsClient\RestClient.cs" containingFunctionPresentation="Method 'ExtractKeys'">
             <startOffsets>
-              <option value="8177" />
+              <option value="8179" />
             </startOffsets>
             <endOffsets>
-              <option value="8314" />
+              <option value="8316" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="16" />

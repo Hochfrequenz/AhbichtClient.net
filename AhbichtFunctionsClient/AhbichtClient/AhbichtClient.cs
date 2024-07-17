@@ -115,7 +115,7 @@ public class AhbichtClient : IPackageKeyToConditionResolver, IConditionKeyToText
         {
             // the bad thing is: the backend returns a success status code with a error body
             var errorBody = JsonSerializer.Deserialize<ErrorResponse>(responseContent!, _jsonSerializerOptions);
-            throw new PackageNotResolvableException(packageKey, $"The package key '{packageKey}' could not be found: {errorBody.ErrorMessage} / {jse.Message}");
+            throw new PackageNotResolvableException(packageKey, $"The package key '{packageKey}' could not be found: {errorBody!.ErrorMessage} / {jse.Message}");
         }
     }
 
@@ -157,7 +157,7 @@ public class AhbichtClient : IPackageKeyToConditionResolver, IConditionKeyToText
         {
             // the bad thing is: the backend returns a success status code with a error body
             var errorBody = JsonSerializer.Deserialize<ErrorResponse>(responseContent!, _jsonSerializerOptions);
-            throw new ConditionNotResolvableException(conditionKey, $"The condition key '{conditionKey}' could not be found: {errorBody.ErrorMessage} / {jse.Message}");
+            throw new ConditionNotResolvableException(conditionKey, $"The condition key '{conditionKey}' could not be found: {errorBody!.ErrorMessage} / {jse.Message}");
         }
     }
 
@@ -198,7 +198,7 @@ public class AhbichtClient : IPackageKeyToConditionResolver, IConditionKeyToText
         {
             // the bad thing is: the backend returns a success status code with a error body
             var errorBody = JsonSerializer.Deserialize<ErrorResponse>(responseContent!, _jsonSerializerOptions);
-            throw new CategorizedKeyExtractError(expression, $"The condition key '{expression}' could not be found: {errorBody.ErrorMessage} / {jse.Message}");
+            throw new CategorizedKeyExtractError(expression, $"The condition key '{expression}' could not be found: {errorBody!.ErrorMessage} / {jse.Message}");
         }
     }
 
@@ -239,13 +239,13 @@ public class AhbichtClient : IPackageKeyToConditionResolver, IConditionKeyToText
         try
         {
             var responseBody = JsonSerializer.Deserialize<AhbExpressionEvaluationResult>(responseContent!, _jsonSerializerOptions);
-            return responseBody;
+            return responseBody!;
         }
         catch (JsonException jse)
         {
             var errorBody = JsonSerializer.Deserialize<ErrorResponse>(responseContent!, _jsonSerializerOptions);
             // todo: be more precise in the exception; Was is malformed? Are data missing?
-            throw new ExpressionNotEvaluatableException(ahbExpression, $"The expression '{ahbExpression}' could not be evaluated: {errorBody.ErrorMessage} / {jse.Message}");
+            throw new ExpressionNotEvaluatableException(ahbExpression, $"The expression '{ahbExpression}' could not be evaluated: {errorBody!.ErrorMessage} / {jse.Message}");
         }
     }
 }
