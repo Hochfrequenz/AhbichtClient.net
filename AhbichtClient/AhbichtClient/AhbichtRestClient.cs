@@ -12,7 +12,7 @@ namespace AhbichtClient;
 /// <summary>
 /// a client for the ahbicht-functions REST API
 /// </summary>
-public class AhbichtClient : IPackageKeyToConditionResolver, IConditionKeyToTextResolver, ICategorizedKeyExtractor, IContentEvaluator
+public class AhbichtRestClient : IPackageKeyToConditionResolver, IConditionKeyToTextResolver, ICategorizedKeyExtractor, IContentEvaluator
 {
     private readonly IAhbichtAuthenticator _authenticator;
     private readonly HttpClient _httpClient;
@@ -30,7 +30,7 @@ public class AhbichtClient : IPackageKeyToConditionResolver, IConditionKeyToText
     /// <param name="httpClientFactory">factory to create the http client from</param>
     /// <param name="authenticator">something that tells you whether and how you need to authenticate yourself at ahbichtfunctions</param>
     /// <param name="httpClientName">name used to create the client</param>
-    public AhbichtClient(IHttpClientFactory httpClientFactory, IAhbichtAuthenticator authenticator, string httpClientName = "AhbichtClient")
+    public AhbichtRestClient(IHttpClientFactory httpClientFactory, IAhbichtAuthenticator authenticator, string httpClientName = "AhbichtClient")
     {
         _httpClient = httpClientFactory.CreateClient(httpClientName);
         if (_httpClient.BaseAddress == null)

@@ -27,7 +27,7 @@ public class MweWithoutAspNetTest
     {
         IHttpClientFactory myFactory = new MyHttpClientFactory();
         IAhbichtAuthenticator myAuthenticator = new NoAuthenticator(); // or use ClientIdClientSecretAuthenticator
-        var client = new AhbichtClient(myFactory, myAuthenticator);
+        var client = new AhbichtRestClient(myFactory, myAuthenticator);
         await client.ResolvePackage("10P", EdifactFormat.UTILMD, EdifactFormatVersion.FV2404);
     }
 }

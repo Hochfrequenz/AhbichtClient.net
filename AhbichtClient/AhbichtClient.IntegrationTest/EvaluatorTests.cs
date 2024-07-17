@@ -23,7 +23,7 @@ public class EvaluatorTests : IClassFixture<ClientFixture>
     public async Task Expressions_Can_Be_Evaluated()
     {
         var httpClientFactory = _client.HttpClientFactory;
-        IContentEvaluator client = new AhbichtClient(httpClientFactory, _authenticator);
+        IContentEvaluator client = new AhbichtRestClient(httpClientFactory, _authenticator);
         var actual = await client.Evaluate("Muss ([2]O[3])[902][501]", new ContentEvaluationResult
         {
             Hints = new Dictionary<string, string?> { { "501", "foo" } },
@@ -61,7 +61,7 @@ public class EvaluatorTests : IClassFixture<ClientFixture>
     public async Task Expressions_Cannot_Be_Evaluated()
     {
         var httpClientFactory = _client.HttpClientFactory;
-        IContentEvaluator client = new AhbichtClient(httpClientFactory, _authenticator);
+        IContentEvaluator client = new AhbichtRestClient(httpClientFactory, _authenticator);
         var evaluatingAMalformedExpression = async () => await client.Evaluate("Muss [2]O[3])[902][501]", new ContentEvaluationResult // <-- contains a syntax error
         {
             Hints = new Dictionary<string, string?> { { "501", "foo" } },

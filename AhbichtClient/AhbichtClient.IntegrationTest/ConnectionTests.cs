@@ -23,7 +23,7 @@ public class ConnectionTests : IClassFixture<ClientFixture>
     public async Task IsAvailable_Returns_True_If_Service_Is_Available()
     {
         var httpClientFactory = _client.HttpClientFactory;
-        var client = new AhbichtClient(httpClientFactory, _authenticator);
+        var client = new AhbichtRestClient(httpClientFactory, _authenticator);
         var result = await client.IsAvailable();
         result.Should().BeTrue();
     }
@@ -37,7 +37,7 @@ public class ConnectionTests : IClassFixture<ClientFixture>
             client.BaseAddress = new Uri("http://localhost:1234"); // <-- no service running under this address
         });
         var serviceProvider = services.BuildServiceProvider();
-        var client = new AhbichtClient(serviceProvider.GetService<IHttpClientFactory>()!, _authenticator);
+        var client = new AhbichtRestClient(serviceProvider.GetService<IHttpClientFactory>()!, _authenticator);
         var checkIfIsAvailable = async () => await client.IsAvailable();
         await checkIfIsAvailable.Should().ThrowAsync<HttpRequestException>();
     }

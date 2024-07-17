@@ -9,10 +9,10 @@ builder.Services.AddHttpClient("AhbichtClient", client =>
     client.BaseAddress = new Uri("http://localhost:7071/"); // or https://ahbicht.azurewebsites.net/
 });
 // you're free to use ahbicht only for _some_ of the services it provides; Just inject the ones you need
-builder.Services.AddTransient<IConditionKeyToTextResolver, AhbichtClient.AhbichtClient>();
-builder.Services.AddTransient<IPackageKeyToConditionResolver, AhbichtClient.AhbichtClient>();
-builder.Services.AddTransient<ICategorizedKeyExtractor, AhbichtClient.AhbichtClient>();
-builder.Services.AddTransient<IContentEvaluator, AhbichtClient.AhbichtClient>();
+builder.Services.AddTransient<IConditionKeyToTextResolver, AhbichtClient.AhbichtRestClient>();
+builder.Services.AddTransient<IPackageKeyToConditionResolver, AhbichtClient.AhbichtRestClient>();
+builder.Services.AddTransient<ICategorizedKeyExtractor, AhbichtClient.AhbichtRestClient>();
+builder.Services.AddTransient<IContentEvaluator, AhbichtClient.AhbichtRestClient>();
 
 var app = builder.Build();
 

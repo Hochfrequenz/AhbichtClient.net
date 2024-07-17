@@ -23,7 +23,7 @@ public class CategorizedKeyExtractorTests : IClassFixture<ClientFixture>
     public async Task Keys_Can_Be_Extracted()
     {
         var httpClientFactory = _client.HttpClientFactory;
-        ICategorizedKeyExtractor client = new AhbichtClient(httpClientFactory, _authenticator);
+        ICategorizedKeyExtractor client = new AhbichtRestClient(httpClientFactory, _authenticator);
         var actual = await client.ExtractKeys("[2] U ([3] O [4])[901] U [555]");
         actual.Should().BeEquivalentTo(new CategorizedKeyExtract
         {
@@ -39,7 +39,7 @@ public class CategorizedKeyExtractorTests : IClassFixture<ClientFixture>
     public async Task Keys_Cannot_Be_Extracted()
     {
         var httpClientFactory = _client.HttpClientFactory;
-        ICategorizedKeyExtractor client = new AhbichtClient(httpClientFactory, _authenticator);
+        ICategorizedKeyExtractor client = new AhbichtRestClient(httpClientFactory, _authenticator);
         var creatingCategorizedKeyExtractForMalformedExpression = async () => await client.ExtractKeys("[2] U [3] O [4])[901] U [555]"); // <-- contains a syntax error
         await creatingCategorizedKeyExtractForMalformedExpression.Should().ThrowAsync<CategorizedKeyExtractError>().WithMessage("*Syntax error*");
     }
