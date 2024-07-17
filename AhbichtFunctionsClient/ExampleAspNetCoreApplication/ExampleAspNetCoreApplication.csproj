@@ -7,6 +7,6 @@
         <PreserveCompilationContext>true</PreserveCompilationContext>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\AhbichtFunctionsClient\AhbichtFunctionsClient.csproj"/>
+        <ProjectReference Include="..\AhbichtClient\AhbichtClient.csproj" />
     </ItemGroup>
 </Project>

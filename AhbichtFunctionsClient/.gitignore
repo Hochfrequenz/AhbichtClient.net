@@ -1,9 +1,9 @@
-AhbichtFunctionsClient/obj
-AhbichtFunctionsClient/bin
-AhbichtFunctionsClient.IntegrationTest/obj
-AhbichtFunctionsClient.IntegrationTest/bin
-AhbichtFunctionsClient.UnitTest/obj
-AhbichtFunctionsClient.UnitTest/bin
+AhbichtClient/obj
+AhbichtClient/bin
+AhbichtClient.IntegrationTest/obj
+AhbichtClient.IntegrationTest/bin
+AhbichtClient.UnitTest/obj
+AhbichtClient.UnitTest/bin
 ExampleAspNetCoreApplication/obj
 ExampleAspNetCoreApplication/bin
 ExampleAspNetCoreApplication.Test/obj

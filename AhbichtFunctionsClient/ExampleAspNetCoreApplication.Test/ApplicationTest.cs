@@ -1,7 +1,4 @@
 using System.Net;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using AhbichtFunctionsClient.Model;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 
@@ -20,10 +17,9 @@ public class ApplicationTest : IClassFixture<WebApplicationFactory<Program>>
     public async Task Test_That_Setup_Works_As_Designed()
     {
         var client = Factory.CreateDefaultClient();
-        var response = await client.GetAsync("/talkToTransformerBee");
+        var response = await client.GetAsync("/extractKeys");
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var content = await response.Content.ReadAsStringAsync();
-        var bo4e = JsonSerializer.Deserialize<BOneyComb>(content, new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() } });
-        bo4e.Should().NotBeNull();
+        content.Should().Be("Folgende Bedingungen müssen angegeben werden: 1, 2, 4");
     }
 }

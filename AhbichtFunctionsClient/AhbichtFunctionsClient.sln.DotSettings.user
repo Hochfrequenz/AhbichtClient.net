@@ -34,10 +34,7 @@
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a86f0f73_002D7e5b_002D4563_002D85e5_002D460f4fafab72/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Expressions_Can_Be_Evaluated" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::77598126-7BB0-4C07-BF06-331033E0DE78::net8.0::AhbichtFunctionsClient.IntegrationTest.EvaluatorTests.Expressions_Can_Be_Evaluated&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::77598126-7BB0-4C07-BF06-331033E0DE78::net8.0::AhbichtFunctionsClient.IntegrationTest.EvaluatorTests.Conditions_Cannot_Be_Evaluated&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Project Location="C:\github\ahbicht-functions-dotnet-client\AhbichtFunctionsClient\AhbichtFunctionsClient.IntegrationTest" Presentation="&amp;lt;AhbichtFunctionsClient.IntegrationTest&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ae9500eb_002Dc8d5_002D4fd1_002Da306_002Db8c26602b57a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="IsAvailable_Throws_Exception_If_Host_Is_Unavailable" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Or&gt;&#xD;

@@ -14,7 +14,7 @@ jobs:
         with:
           dotnet-version: 8.0.100
       - name: Build/Check for compile errors (dotnet build)
-        working-directory: "AhbichtFunctionsClient"
+        working-directory: "AhbichtClient"
         run: dotnet build --configuration Release
       - name: Log into registry
         # GHCR_PAT is a personal access token for the Github Container Registry; You can create it using the following steps:
@@ -23,14 +23,14 @@ jobs:
         # 3) Select the following scopes: read:packages
         # GHCR_USR is the username for the Github Container Registry; it has to match the PAT and is the username of the Github account that created the PAT
         # You can update the tokens in the repository settings:
-        # https://github.com/Hochfrequenz/AhbichtFunctionsClient/settings/secrets/actions/GHCR_PAT
-        # https://github.com/Hochfrequenz/AhbichtFunctionsClient/settings/secrets/actions/GHCR_USR
+        # https://github.com/Hochfrequenz/AhbichtClient/settings/secrets/actions/GHCR_PAT
+        # https://github.com/Hochfrequenz/AhbichtClient/settings/secrets/actions/GHCR_USR
         # Tokens will expire 2025-01-31
         run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ secrets.GHCR_USR }} --password-stdin
       - name: Start containers
-        run: docker compose -f "AhbichtFunctionsClient/AhbichtFunctionsClient.IntegrationTest/docker-compose.yml" up -d
+        run: docker compose -f "AhbichtClient/AhbichtClient.IntegrationTest/docker-compose.yml" up -d
       - name: Run Unit Tests (dotnet test) # never ever release with failing tests!
-        working-directory: "AhbichtFunctionsClient"
+        working-directory: "AhbichtClient"
         run: dotnet test --configuration Release
   push_release:
     needs: run_tests
@@ -49,16 +49,16 @@ jobs:
         with:
           tagRegex: "v(\\d+\\.\\d+\\.\\d+)"
       - name: Build/Check for compile errors (dotnet build)
-        working-directory: "AhbichtFunctionsClient"
+        working-directory: "AhbichtClient"
         run: dotnet build --configuration Release
-      - name: Create Package AhbichtFunctionsClient (dotnet pack)
-        working-directory: "AhbichtFunctionsClient/AhbichtFunctionsClient"
-        run: dotnet pack AhbichtFunctionsClient.csproj --configuration Release -p:PackageVersion="${{ steps.tagTBC.outputs.tag }}"
+      - name: Create Package AhbichtClient (dotnet pack)
+        working-directory: "AhbichtClient/AhbichtClient"
+        run: dotnet pack AhbichtClient.csproj --configuration Release -p:PackageVersion="${{ steps.tagTBC.outputs.tag }}"
       - name: Setup Nuget.exe
         uses: warrenbuckley/Setup-Nuget@v1
-      - name: Nuget push AhbichtFunctionsClient
-        working-directory: "AhbichtFunctionsClient/AhbichtFunctionsClient"
-        # token: https://github.com/Hochfrequenz/AhbichtFunctionsClient/settings/secrets/actions/NUGET_ORG_PUSH_TOKEN
+      - name: Nuget push AhbichtClient
+        working-directory: "AhbichtClient/AhbichtClient"
+        # token: https://github.com/Hochfrequenz/AhbichtClient/settings/secrets/actions/NUGET_ORG_PUSH_TOKEN
         # expires 2025-02-01
         run: |
           nuget setApiKey ${{ secrets.NUGET_ORG_PUSH_TOKEN }}
