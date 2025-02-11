@@ -4,8 +4,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <PreserveCompilationContext>true</PreserveCompilationContext>
-        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
         <LangVersion>default</LangVersion>
+        <TargetFramework>net9.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\AhbichtClient\AhbichtClient.csproj" />
