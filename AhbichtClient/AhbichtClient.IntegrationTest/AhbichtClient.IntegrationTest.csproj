@@ -6,8 +6,9 @@
 
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
-        <TargetFramework>net8.0</TargetFramework>
         <PackageId>AhbichtClient.IntegrationTest</PackageId>
+        <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
