@@ -59,7 +59,7 @@ jobs:
       - name: Nuget push AhbichtClient
         working-directory: "AhbichtClient/AhbichtClient"
         # token: https://github.com/Hochfrequenz/AhbichtClient.net/settings/secrets/actions/NUGET_ORG_PUSH_TOKEN
-        # expires 2025-07-17; token is owned by konstantin as of now.
+        # expires 2026-09-21; token is owned by konstantin as of now.
         run: |
           nuget setApiKey ${{ secrets.NUGET_ORG_PUSH_TOKEN }}
           nuget push .\bin\Release\*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -NoSymbols
