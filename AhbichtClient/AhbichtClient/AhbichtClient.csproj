@@ -5,7 +5,7 @@
     <RepositoryUrl>https://github.com/Hochfrequenz/AhbichtFunctionsClient.net</RepositoryUrl>
     <License>MIT</License>
     <PackageId>AhbichtClient</PackageId>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net10.0;net11.0</TargetFrameworks>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

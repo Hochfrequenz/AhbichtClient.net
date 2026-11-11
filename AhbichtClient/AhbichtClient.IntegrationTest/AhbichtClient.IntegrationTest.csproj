@@ -6,7 +6,7 @@
     <IsTestProject>true</IsTestProject>
     <PackageId>AhbichtClient.IntegrationTest</PackageId>
     <LangVersion>default</LangVersion>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net10.0;net11.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AwesomeAssertions" Version="8.1.0" />
