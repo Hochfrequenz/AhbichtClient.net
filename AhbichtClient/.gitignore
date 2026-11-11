@@ -10,3 +10,6 @@ ExampleAspNetCoreApplication/obj
 ExampleAspNetCoreApplication/bin
 ExampleAspNetCoreApplication.Test/obj
 ExampleAspNetCoreApplication.Test/bin
+
+# JetBrains Rider
+.idea/
