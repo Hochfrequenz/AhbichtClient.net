@@ -12,7 +12,9 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 11.0.x
+          dotnet-version: |
+            10.0.x
+            11.0.x
       - name: Log into registry
         # GHCR_PAT is a personal access token for the Github Container Registry; You can create it using the following steps:
         # 1) Go to https://github.com/settings/tokens
