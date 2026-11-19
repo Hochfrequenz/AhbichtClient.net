@@ -90,13 +90,14 @@ Also for unit testing and mocking, these interfaces are very useful.
 
 ### Integration Tests
 
-To run the integration test login to your docker to access the ahbicht-functions/backend image.
+To run the integration tests locally, log in to the GitHub Container Registry to access the `ghcr.io/hochfrequenz/ahbicht-functions` image.
+You need read access to that package and a token with the `read:packages` scope, e.g. a [classic personal access token](https://github.com/settings/tokens) or the GitHub CLI token (`gh auth refresh -s read:packages` once):
 
 ```bash
-docker login ghcr.io -u YOUR_GITHUB_USERNAME
+gh auth token | docker login ghcr.io -u YOUR_GITHUB_USERNAME --password-stdin
 ```
 
-then paste your PAT similarly to described in the [integration test CI pipeline](.github/workflows/integrationtests.yml)
+(The CI pipeline uses the workflow's `GITHUB_TOKEN` instead; no personal token is needed there.)
 
 ### Release (CI/CD)
 
